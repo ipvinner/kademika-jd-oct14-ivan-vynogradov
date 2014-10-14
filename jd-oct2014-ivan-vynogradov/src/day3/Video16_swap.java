@@ -15,7 +15,7 @@ public class Video16_swap {
 	}
 	
 	static void swap(int[] data){
-		
+		// меняет местами соседние элемены массива
 		if(data != null){
 			for(int i = 0; i < data.length - 1; i++){
 				int temp = data[i];
