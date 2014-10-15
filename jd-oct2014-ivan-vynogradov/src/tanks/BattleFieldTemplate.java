@@ -1,11 +1,13 @@
 /*
  * Copyright (c) 2014 kademika.com
  */
-package day2;
+package tanks;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -17,17 +19,118 @@ public class BattleFieldTemplate extends JPanel {
 	int tankX = 0;
 	int tankY = 0;
 	
-	long speed = 225;
-	
+	long speed = 10;
+	int tankDirection = 1;
 	/**
 	 * Write your code here.
 	 */
 	void runTheGame() throws Exception {
+//		int i = 0;
+//		int direction = 0;
+//		while(true){
+//			if (direction == 0 && i < 8){
+//				tankX += 64;
+//				i++;
+//			}else {
+//				tankX -= 64;
+//				i--;
+//			}
+//			if(i == 8){
+//				direction = 1;
+//			} else if (i == 0) {
+//				direction = 0;
+//			}
+//			repaint();
+//			Thread.sleep(speed);
+//		}
+		//moveRandom();
+		moveToQuadrant(1, 2);
+		Thread.sleep(2000);
+		moveToQuadrant(5, 8);
+		Thread.sleep(2000);
+		moveToQuadrant(7, 7);
+		Thread.sleep(2000);
+		moveToQuadrant(2, 1);
 	}
 	
-	void move(int direction) {
+	void moveRandom() throws Exception {
+		Random r = new Random();
+		int i;
+		while(true){
+			i = r.nextInt(5);
+			if (i > 0){
+				move(i);
+			}
+		}
+	}
+	
+	void moveToQuadrant(int v, int h) throws Exception {
+		String coordinates = getQuadrant(v, h);
+		int separator = coordinates.indexOf("_");
+		int x = Integer.parseInt(coordinates.substring(0, separator));
+		int y = Integer.parseInt(coordinates.substring(separator+1));
+		
+		if(tankX < x){
+			while(tankX != x){
+				move(4);
+			}
+		} else {
+			while(tankX != x){
+				move(3);
+			}
+		}
+		
+		if(tankY < y){
+			while(tankY != y){
+				move(2);
+			}
+		}else {
+			while (tankY != y){
+				move(1);
+			}
+		}
+	}	
+	
+	
+	void move(int direction) throws Exception {
+		int step = 1;
+		int covered = 0;
+		if((direction == 1 && tankY == 0) || (direction == 2 && tankY >= 512)
+				|| (direction == 3 && tankX == 0) || (direction == 4 && tankX >= 512)){
+			System.out.println("wrong move direction" + direction + " tankX: " + tankX + "tankY " + tankY);
+			return;
+		}
+		
+		turn(direction);
+		
+		while(covered < 64) {
+			if(direction == 1){
+				tankY -= step;
+				System.out.println("move up " + direction + " tankX: " + tankX + " tankY " + tankY );
+			} else if (direction == 2) {
+				tankY += step;
+				System.out.println("move down " + direction + " tankX: " + tankX + " tankY " + tankY );
+			} else if (direction == 3) {
+				tankX -= step;
+				System.out.println("move left " + direction + " tankX: " + tankX + " tankY " + tankY);
+			} else {
+				tankX += step;
+				System.out.println("move right " + direction + " tankX: " + tankX + " tankY " + tankY);
+			}
+				covered +=step;
+				repaint();
+				Thread.sleep(speed);
+			}
+		
 	}
 
+	static String getQuadrant(int v, int h){		
+		return (v - 1)*64 + "_" + (h - 1)*64; 
+	}
+	
+	void turn(int direction){
+		tankDirection = direction;
+	}
 	
 	// Magic bellow. Do not worry about this now, you will understand everything in this course.
 	// Please concentrate on your tasks only.
