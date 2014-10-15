@@ -1,4 +1,4 @@
-package day3;
+package Lesson3;
 
 public class Video26_getPopulations {
 
