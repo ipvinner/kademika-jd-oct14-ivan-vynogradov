@@ -1,4 +1,4 @@
-package Lesson4;
+package Lesson4.Video15;
 
 public class Video15_lightbulb {
 
