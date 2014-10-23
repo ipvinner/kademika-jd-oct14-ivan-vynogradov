@@ -5,7 +5,8 @@ public class HW_printArray {
 	public static void main(String[] args) {
 		String[][] data1 = {
 				{"Ваня", "Света", "77"},
-				{"Петя", "Наташа", "ttt"}};
+				{"Петя", "Наташа", "ttt"},
+				{"Настя", "Света", "88"}};
 		printArray(data1);
 	}
 	
