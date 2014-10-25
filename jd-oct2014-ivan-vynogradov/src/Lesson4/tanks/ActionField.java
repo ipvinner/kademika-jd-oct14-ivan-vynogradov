@@ -1,6 +1,6 @@
 package Lesson4.tanks;
 
-import java.awt.Color;
+import java.awt.Color; // test
 import java.awt.Dimension;
 import java.awt.Graphics;
 
