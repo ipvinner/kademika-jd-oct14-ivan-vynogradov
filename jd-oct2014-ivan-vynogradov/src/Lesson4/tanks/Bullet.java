@@ -22,6 +22,14 @@ public class Bullet {
 	}
 
 	
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
 	public int getY() {
 		return y;
 	}

@@ -22,10 +22,6 @@ public class BattleField {
 			{ "B", "B", " ", " ", " ", " ", " ", "B", "B" },
 			{ "B", " ", " ", "B", "B", "B", " ", " ", "B" },
 			{ "B", " ", " ", "B", "B", "B", " ", " ", "B" } };
-	
-	
-	
-	
 
 	public BattleField() {
 		
@@ -35,7 +31,8 @@ public class BattleField {
 		this.battleField = battlefield;
 	}
 	public String scanQadrant(int v, int h) {
-		String result = battleField[v - 1][h - 1];
+//		String result = battleField[v - 1][h - 1]; my variant
+		String result = battleField[v][h]; // Oleg video
 		return result;
 
 	}

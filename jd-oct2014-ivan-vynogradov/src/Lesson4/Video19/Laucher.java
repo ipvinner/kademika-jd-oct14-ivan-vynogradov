@@ -1,12 +1,13 @@
 package Lesson4.Video19;
 
+import Lesson4.tanks.ActionField;
+
 public class Laucher {
 
-	public static void main(String[] args) {
-		
-		Tank t = new Tank("Black", 100, 4);
-		
-		System.out.println("Tank color: " + t.color + " maxSpeed: " + t.maxSpeed + " crew: " + t.crew);
+	public static void main(String[] args) throws Exception {
+
+		ActionField af = new ActionField();
+		af.runTheGame();
 	}
 
 }
