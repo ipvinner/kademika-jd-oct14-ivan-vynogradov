@@ -2,7 +2,7 @@ package Lesson4.tanks;
 
 public class Bullet {
 
-	private int speed = 10;
+	private int speed = 5;
 	private int x;
 	private int y;
 	private int direction;
@@ -41,11 +41,15 @@ public class Bullet {
 
 	
 	public void updateX(int x) {
-		this.x = x + 25;
+		
+		//this.x = x + 25;
+		this.x += x;
+		
 	}
 
-	public void udpateY(int y) {
-		this.y = y + 25;
+	public void updateY(int y) {
+		//this.y = y + 25;
+		this.y += y;
 	}
 
 	public void destroy() {

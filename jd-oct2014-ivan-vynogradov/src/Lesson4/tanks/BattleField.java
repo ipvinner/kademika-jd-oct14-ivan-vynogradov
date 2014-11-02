@@ -38,7 +38,8 @@ public class BattleField {
 	}
 
 	public void updateQadrant(int v, int h, String field) {
-		battleField[v - 1][h - 1] = field;
+//		battleField[v - 1][h - 1] = field;
+		battleField[v][h] = field;
 
 	}
 	

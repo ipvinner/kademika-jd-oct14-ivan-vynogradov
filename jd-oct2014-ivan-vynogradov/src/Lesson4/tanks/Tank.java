@@ -10,6 +10,7 @@ public class Tank {
 	private int direction;
 	private ActionField af;
 	private BattleField bf;
+	private Bullet bullet;
 	
 	public Tank(){
 		
@@ -52,7 +53,7 @@ public class Tank {
 		}
 	}
 	
-	public void moveToQadrant(int v, int h) throws Exception{
+	public void moveToQuadrant(int v, int h) throws Exception{
 		String coordinates = af.getQuadrantXY(v, h);
 		int separator = coordinates.indexOf("_");
 		int y1 = Integer.parseInt(coordinates.substring(0, separator));
@@ -80,6 +81,27 @@ public class Tank {
 				this.setDirection(1);
 				this.move();
 			}
+		}
+	}
+	
+	public void clean() throws Exception {
+		for(int i = 0; i <= 8; i++){
+			moveToQuadrant((9 - i), (1 + i));
+			turn(1);
+			
+			Bullet bullet = new Bullet((x+25), (y+25), direction);
+			System.out.println("clean bulletY" + bullet.getY() );
+			while(bullet.getY() != -14){
+				System.out.println("here&");
+				System.out.println("clean BulletY: " + bullet.getY());
+				af.processFire(bullet);
+			}
+			turn(4);
+			while(bullet.getX() != 590){
+				//System.out.println("clean BulletX: " + bulletX);
+				af.processFire(bullet);
+			}
+			
 		}
 	}
 	

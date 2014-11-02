@@ -16,13 +16,18 @@ public class ActionField extends JPanel {
 	private Bullet bullet;
 
 	public void runTheGame() throws Exception {
-		tank.move();
-		System.out.println("something done");
-		tank.move();
-		tank.fire();
-		tank.fire();
-		tank.turn(4);
-		tank.fire();
+		
+//		tank.move();
+//		tank.move();
+//		tank.turn(3);
+//		tank.fire();
+		tank.clean();
+		//System.out.println("something done");
+//		tank.move();
+//		tank.fire();
+//		tank.fire();
+//		tank.turn(4);
+//		tank.fire();
 	}
 
 	private boolean processInterception() {
@@ -50,11 +55,13 @@ public class ActionField extends JPanel {
 	}
 
 	public void processMove(Tank tank) throws Exception {
-		//this.tank = tank;
+		this.tank = tank;
+		int direction = tank.getDirection();
+		
 		int step = 1;
 		int covered = 0;
 		
-		int direction = tank.getDirection();
+		
 		int tankX = tank.getX();
 		int tankY = tank.getY();
 		// check limits x: 0, 513; y: 0, 513
@@ -71,27 +78,27 @@ public class ActionField extends JPanel {
 		while (covered < 64) {
 			// checkQuadrantIsClean();
 			if (direction == 1) {
-				tankY -= step;
-				// System.out.println("[move up] direction: " + direction +
-				// " tankX: " + tankX + ", tankY: " + tankY);
+				tank.updateY(-step);
+				//tankY -= step;
+				 System.out.println("[move up] direction: " + tank.getDirection() + " tankX: " + tank.getX() + ", tankY: " + tank.getY());
 			} else if (direction == 2) {
-				tankY += step;
-				// System.out.println("[move down] direction: " + direction +
-				// " tankX: " + tankX + ", tankY: " + tankY);
+				tank.updateY(step); 
+				//tankY += step;
+				System.out.println("[move up] direction: " + tank.getDirection() + " tankX: " + tank.getX() + ", tankY: " + tank.getY());
 			} else if (direction == 3) {
-				tankX -= step;
-				// System.out.println("[move left] direction: " + direction +
-				// " tankX: " + tankX + ", tankY: " + tankY);
+				tank.updateX(-step);
+				//tankX -= step;
+				System.out.println("[move up] direction: " + tank.getDirection() + " tankX: " + tank.getX() + ", tankY: " + tank.getY());
 			} else {
-				tankX += step;
-				// System.out.println("[move right] direction: " + direction +
-				// " tankX: " + tankX + ", tankY: " + tankY);
+				tank.updateX(step);
+				//tankX += step;
+				System.out.println("[move up] direction: " + tank.getDirection() + " tankX: " + tank.getX() + ", tankY: " + tank.getY());
 			}
 
 			covered += step;
 
 			repaint();
-			Thread.sleep(200);
+			Thread.sleep(tank.getSpeed());
 		}
 	}
 
@@ -107,33 +114,23 @@ public class ActionField extends JPanel {
 	}
 
 	public void processFire(Bullet bullet) throws Exception {
-		int bulletX = bullet.getX();
-		int bulletY = bullet.getY();
-		int tankDirection = tank.getDirection();
-		bulletX = tank.getX() + 25;
-		bulletY = tank.getY() + 25;
-
-		// System.out.println("Fire " + "BulletX: " + bulletX + " BulletY: " +
-		// bulletY);
-		// System.out.println("Coordinates" + "TankX: " + tankX + " TankY: " +
-		// tankY);
+		this.bullet = bullet;
 		int bulletStep = 1;
-		while ((bulletX > -14 && bulletX < 590)
-				&& (bulletY > -14 && bulletY < 590)) {
-			if (tankDirection == 1) {
-				bulletY -= bulletStep;
-			} else if (tankDirection == 2) {
-				bulletY += bulletStep;
-			} else if (tankDirection == 3) {
-				bulletX -= bulletStep;
+			
+		while ((bullet.getX() > -14 && bullet.getX() < 590)	&& (bullet.getY() > -14 && bullet.getY() < 590)) {
+			if (bullet.getDirection() == 1) {
+				bullet.updateY(-bulletStep);
+			} else if (bullet.getDirection() == 2) {
+				bullet.updateY(bulletStep);
+			} else if (bullet.getDirection() == 3) {
+				bullet.updateX(-bulletStep);
 			} else {
-				bulletX += bulletStep;
+				bullet.updateX(bulletStep);
 			}
 
 			if (processInterception()) {
-				bulletX = -100;
-				bulletY = -100;
-				break;
+				//System.out.println("processInterception");
+				bullet.destroy();
 			}
 			repaint();
 			Thread.sleep(bullet.getSpeed());
