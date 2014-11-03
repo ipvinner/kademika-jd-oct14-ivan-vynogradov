@@ -16,7 +16,10 @@ public class ActionField extends JPanel {
 	private Bullet bullet;
 
 	public void runTheGame() throws Exception {
-		
+//		tank.turn(4);
+//		while(true) {
+//			tank.fire();
+//		}
 //		tank.move();
 //		tank.move();
 //		tank.turn(3);
@@ -116,7 +119,7 @@ public class ActionField extends JPanel {
 	public void processFire(Bullet bullet) throws Exception {
 		this.bullet = bullet;
 		int bulletStep = 1;
-			
+			System.out.println("processFire");
 		while ((bullet.getX() > -14 && bullet.getX() < 590)	&& (bullet.getY() > -14 && bullet.getY() < 590)) {
 			if (bullet.getDirection() == 1) {
 				bullet.updateY(-bulletStep);
