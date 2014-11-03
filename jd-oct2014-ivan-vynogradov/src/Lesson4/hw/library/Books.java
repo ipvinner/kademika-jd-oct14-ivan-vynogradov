@@ -9,7 +9,7 @@ public class Books {
 	private int fieldsQuantity;
 	private String author;
 	private String name;
-	private static int limit = 3;
+	private static int limit = 0;
 
 	// private String[][] books = {
 	// { "Robert Kiosaki", "Bogatiy Papa - bedniy papa", "MONEY" },
@@ -82,12 +82,12 @@ public class Books {
 	}
 	
 	public void showAllBooksWithLimit(int limit) {
-			System.out.println("getLimit " + getLimit());
-			int fromIndex = this.getLimit() - limit;
-			System.out.println("from Index " + fromIndex);
+			//System.out.println("getLimit " + getLimit());
+			//int fromIndex = this.getLimit() - limit;
+			//System.out.println("from Index " + fromIndex);
 		if (books != null) {
 			System.out.println("Author         |||Name                       |||Genre");
-			for(int i = fromIndex; i < (fromIndex + limit); i++){
+			for(int i = getLimit(); i < (getLimit() + limit); i++){
 				for(int j = 0; j < books[i].length; j++){
 					System.out.print("[ " + books[i][j] + " ]" + " ");
 				}
@@ -102,10 +102,26 @@ public class Books {
 	public void sortBooks(String sortBy) {
 		if (sortBy.equals("author")) {
 			Arrays.sort(books, new ColumnComparator(0));
+			showAllBooks();
 		} else if (sortBy.equals("name")) {
 			Arrays.sort(books, new ColumnComparator(1));
+			showAllBooks();
 		} else if (sortBy.equals("genre")){
 			Arrays.sort(books, new ColumnComparator(2));
+			showAllBooks();
+		}
+	}
+	
+	public void sortBooksWithLimit(String sortBy, int limit) {
+		if (sortBy.equals("author")) {
+			Arrays.sort(books, new ColumnComparator(0));
+			showAllBooks();
+		} else if (sortBy.equals("name")) {
+			Arrays.sort(books, new ColumnComparator(1));
+			showAllBooks();
+		} else if (sortBy.equals("genre")){
+			Arrays.sort(books, new ColumnComparator(2));
+			showAllBooksWithLimit(limit);
 		}
 	}
 	

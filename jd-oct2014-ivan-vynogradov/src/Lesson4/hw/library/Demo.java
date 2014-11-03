@@ -21,16 +21,18 @@ public class Demo {
 		//books.showAllBooks();
 		//books.sortBooks();
 		//Arrays.sort(books.getBooks(), Books.BooksNameComparator );
+		books.showAllBooks();
+		System.out.println("---------AFTER sort by author-------------");
+		books.sortBooks("author");
+		System.out.println("---------AFTER sort by book name-----------");
+		books.sortBooks("name");
+		System.out.println("---------AFTER sort by genre with LIMIT-----------");
+		books.sortBooksWithLimit("genre", 3);
+		
 		//books.showAllBooks();
-		//books.sortBooks("author");
-		//System.out.println("AFTER sort by author");
-		//books.showAllBooks();
-		//books.sortBooks("name");
-		//System.out.println("AFTER sort by book name");
-		//books.showAllBooks();
-		books.showAllBooksWithLimit(2);
-		books.showAllBooksWithLimit(2);
-		books.showAllBooksWithLimit(2);
+//		books.showAllBooksWithLimit(3);
+//		books.showAllBooksWithLimit(3);
+//		books.showAllBooksWithLimit(2);
 		
 	}
 
