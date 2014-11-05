@@ -6,5 +6,6 @@ public enum Genres {
 	DETECTIV,
 	HISTORY,
 	MONEY,
-	POEMA
+	POEMA,
+	ROMAN;
 }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Tank {
 	
-	private int speed = 10;
+	protected int speed = 10;
 	private int x;
 	private int y;
 	private Direction direction;

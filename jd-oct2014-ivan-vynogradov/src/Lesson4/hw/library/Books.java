@@ -82,9 +82,6 @@ public class Books {
 	}
 	
 	public void showAllBooksWithLimit(int limit) {
-			//System.out.println("getLimit " + getLimit());
-			//int fromIndex = this.getLimit() - limit;
-			//System.out.println("from Index " + fromIndex);
 		if (books != null) {
 			System.out.println("Author         |||Name                       |||Genre");
 			for(int i = getLimit(); i < (getLimit() + limit); i++){
@@ -126,11 +123,12 @@ public class Books {
 	}
 	
 	private void updateLimit(int limit1){
-		//System.out.println(limit);
+		
 		this.setLimit(this.getLimit() + limit1);
 	}
 
 	public static int getLimit() {
+		//System.out.println("getLimint" + limit);
 		return limit;
 	}
 

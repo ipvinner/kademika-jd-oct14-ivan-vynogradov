@@ -14,7 +14,7 @@ public class Launcher {
 //		System.out.println(bf.getDimentionX());
 		
 		ActionField af = new ActionField();
-		System.out.println("created Action field");
+		//System.out.println("created Action field");
 		af.runTheGame();
 	}
 

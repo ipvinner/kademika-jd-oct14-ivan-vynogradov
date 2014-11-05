@@ -21,8 +21,11 @@ public class ActionField extends JPanel {
 //		while(true) {
 //			tank.fire();
 //		}
-//		tank.move();
-//		tank.move();
+		tank.move();
+		tank.move();
+		tank.move();
+		tank.move();
+		tank.move();
 //		tank.turn(Direction.UP);
 //	while(true) {
 //		tank.fire();
@@ -85,15 +88,15 @@ public class ActionField extends JPanel {
 
 		while (covered < 64) {
 			// checkQuadrantIsClean();
-			if (tank.getDirection().equals("UP")) {
+			if (tank.getDirection() == Direction.UP) {
 				tank.updateY(-step);
 				//tankY -= step;
 				 System.out.println("[move up] direction: " + tank.getDirection() + " tankX: " + tank.getX() + ", tankY: " + tank.getY());
-			} else if (tank.getDirection().equals("DOWN")) {
+			} else if (tank.getDirection() == Direction.DOWN) {
 				tank.updateY(step); 
 				//tankY += step;
 				System.out.println("[move up] direction: " + tank.getDirection() + " tankX: " + tank.getX() + ", tankY: " + tank.getY());
-			} else if (tank.getDirection().equals("LEFT")) {
+			} else if (tank.getDirection() == Direction.LEFT) {
 				tank.updateX(-step);
 				//tankX -= step;
 				System.out.println("[move up] direction: " + tank.getDirection() + " tankX: " + tank.getX() + ", tankY: " + tank.getY());
