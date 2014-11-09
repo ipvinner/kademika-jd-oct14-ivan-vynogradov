@@ -78,7 +78,8 @@ public class HW_BattleFieldTemplate extends JPanel {
 //		bulletY = 10;		
 //		System.out.println(processInterception());
 //		System.out.println(Arrays.toString(battleField[0]));
-		clean();
+		//clean();
+		moveRandom();
 	}
 	
 	boolean processInterception() {

@@ -5,8 +5,7 @@ import java.util.Arrays;
 public class Demo {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+				
 		// Create Library
 		Books books = new Books(11, 3);
 		

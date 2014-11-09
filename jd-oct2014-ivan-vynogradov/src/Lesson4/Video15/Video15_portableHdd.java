@@ -62,5 +62,15 @@ public class Video15_portableHdd {
 	void disableSecurity(){
 		
 	}
+	
+	void checkCategory(){
+		
+	}
+	
+	void checkDisk(){
+		
+	}
+	
+	
 
 }

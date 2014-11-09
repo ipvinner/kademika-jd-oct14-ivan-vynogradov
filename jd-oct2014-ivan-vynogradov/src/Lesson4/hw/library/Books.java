@@ -9,7 +9,7 @@ public class Books {
 	private int fieldsQuantity;
 	private String author;
 	private String name;
-	private static int limit = 0;
+	private int limit = 0;
 
 	// private String[][] books = {
 	// { "Robert Kiosaki", "Bogatiy Papa - bedniy papa", "MONEY" },
@@ -98,7 +98,7 @@ public class Books {
 
 	public void sortBooks(String sortBy) {
 		if (sortBy.equals("author")) {
-			Arrays.sort(books, new ColumnComparator(0));
+			Arrays.sort(books, new ColumnComparator(0)); // use EnUM
 			showAllBooks();
 		} else if (sortBy.equals("name")) {
 			Arrays.sort(books, new ColumnComparator(1));
@@ -107,6 +107,7 @@ public class Books {
 			Arrays.sort(books, new ColumnComparator(2));
 			showAllBooks();
 		}
+		
 	}
 	
 	public void sortBooksWithLimit(String sortBy, int limit) {
@@ -122,17 +123,21 @@ public class Books {
 		}
 	}
 	
+	public void findBook(){
+		
+	}
+	
 	private void updateLimit(int limit1){
 		
 		this.setLimit(this.getLimit() + limit1);
 	}
 
-	public static int getLimit() {
+	public int getLimit() {
 		//System.out.println("getLimint" + limit);
 		return limit;
 	}
 
-	public static void setLimit(int limit) {
-		Books.limit = limit;
+	public void setLimit(int limit) {
+		this.limit = limit;
 	}
 }
