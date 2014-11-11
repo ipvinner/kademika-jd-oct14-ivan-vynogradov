@@ -1,12 +1,22 @@
 package Lesson5.shop;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 public class Customer {
 	private String name;
 	private String email;
 	private String phone;
 	private String city;
+	private Order order = new Order();
 
 	public static String[][] customers = new String[10][4];
+	
+	List<List<String>> customersList = new ArrayList<List<String>>();
+	
 	
 	Customer(){
 		
@@ -25,7 +35,7 @@ public class Customer {
 	}
 	
 	public void showAllCustomers(){
-		Boolean proverka;
+		//Boolean proverka;
 		if (customers != null) {
 			System.out.println("Customer name         |||CustomerEmail        |||CustomerPhone      |||     Customer city");
 			for (String[] customer : customers) {
@@ -43,8 +53,12 @@ public class Customer {
 		}
 	}
 
-	public void buy(String goodName, String count) {
-
+	public void buy(String goodName, int count) {
+		Goods.updateGoodsArray(goodName, count);
+		int day = getDay();
+		int month = getMoth();
+		order.addOrder(this.name, goodName, count, day, month);
+		
 	}
 
 	private void addCustomer(String name, String email, String phone, String city) {
@@ -55,6 +69,8 @@ public class Customer {
 		customers[lastIndex][2] = phone;
 		customers[lastIndex][3] = city;
 	}
+	
+	
 
 	private int getLastCustomerIndex() {
 
@@ -66,6 +82,26 @@ public class Customer {
 		}
 		return 0;
 
+	}
+	
+	private int getDay(){
+		Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);        
+        return day;
+	}
+	
+	private int getMoth(){
+		Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH);
+        //System.out.println("month is " + month);
+        return month + 1;
+	}
+	
+	public void compareDate(){
+		
+	    
+	    System.out.print(System.currentTimeMillis());
+        
 	}
 
 }

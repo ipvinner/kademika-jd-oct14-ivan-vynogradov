@@ -1,10 +1,10 @@
 package Lesson5.shop;
 
-public class IPphone extends Phones {
+public class Gateway extends Goods {
 	
-	private String category = "IPphone";
+	private String category = "Gateway";
 	
-	public IPphone(String goodName, double goodPrice, int goodCount, String desc){
+	public Gateway(String goodName, double goodPrice, int goodCount, String desc){
 		this.addGood(goodName, goodPrice, goodCount, this.category, desc);
 	}
 	
@@ -13,7 +13,6 @@ public class IPphone extends Phones {
 		// TODO Auto-generated method stub
 		super.addGood(goodName, goodPrice, goodCount, category, desc);
 	}
-	
 	
 	
 }
