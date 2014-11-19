@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class Circle extends Shape {
+public class Circle extends AbstractShape {
 
 	@Override
 	public void draw(Graphics g) {

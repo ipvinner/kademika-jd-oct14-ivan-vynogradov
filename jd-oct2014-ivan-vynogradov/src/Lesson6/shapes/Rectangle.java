@@ -3,7 +3,7 @@ package Lesson6.shapes;
 
 import java.awt.Graphics;
 
-public class Rectangle extends Shape {
+public class Rectangle extends AbstractShape {
 	
 	@Override
 	public void draw(Graphics g) {
