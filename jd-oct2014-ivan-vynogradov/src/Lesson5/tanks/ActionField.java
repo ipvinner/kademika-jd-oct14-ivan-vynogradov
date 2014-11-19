@@ -18,9 +18,14 @@ public class ActionField extends JPanel {
 
 	public void runTheGame() throws Exception {
 
-		while(true) {
-			aggressor.fire();
-		}
+		
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+		
 
 	}
 
@@ -28,22 +33,25 @@ public class ActionField extends JPanel {
 		String coordinates = getQuadrant(bullet.getX(), bullet.getY());
 		int y = Integer.parseInt(coordinates.split("_")[0]);
 		int x = Integer.parseInt(coordinates.split("_")[1]);
-
+		System.out.println("processInterception");
+		System.out.println(coordinates);
+		
 		if (y >= 0 && y < 9 && x >= 0 && x < 9) {
 			if (!battleField.scanQadrant(y, x).trim().isEmpty()) {
 				battleField.updateQadrant(y, x, " ");
-				;
 				return true;
 			}
 			
 			// check aggressor
 //			if (checkInterception(getQuadrant(aggressor.getX(), aggressor.getY()), coordinates)){
+//				System.out.println("Aggressor was destroyed");
 //				aggressor.destroy();
 //				return true;
 //			}
-//			
-//			// check defender
+////			
+////			// check defender
 //			if (checkInterception(getQuadrant(deffender.getX(), deffender.getY()), coordinates)){
+//				System.out.println("Deffender was destroyed");
 //				deffender.destroy();
 //				return true;
 //			}
@@ -55,10 +63,10 @@ public class ActionField extends JPanel {
 	private boolean checkInterception(String object, String quadrant){
 		int oy = Integer.parseInt(object.split("_")[0]);
 		int ox = Integer.parseInt(object.split("_")[1]);
-		
+		System.out.println("oy :" + oy + " ox:" + ox);
 		int qy = Integer.parseInt(quadrant.split("_")[0]);
-		int qx = Integer.parseInt(object.split("_")[1]);
-		
+		int qx = Integer.parseInt(quadrant.split("_")[1]);
+		System.out.println("qy :" + qy + " qx:" + qx);
 		if (oy >= 0 && oy < 9 && ox >= 0 && ox < 9){
 			if (oy == qy && ox == qx){
 				return true;
@@ -137,13 +145,14 @@ public class ActionField extends JPanel {
 	public void processFire(Bullet bullet) throws Exception {
 		this.bullet = bullet;
 		int bulletStep = 1;
-			System.out.println("processFire");
+//			System.out.println("processFire");
+//			System.out.println(bullet.getDirection());
 		while ((bullet.getX() > -14 && bullet.getX() < 590)	&& (bullet.getY() > -14 && bullet.getY() < 590)) {
-			if (bullet.getDirection().equals("UP")) {
+			if (bullet.getDirection() == Direction.UP) {
 				bullet.updateY(-bulletStep);
-			} else if (bullet.getDirection().equals("DOWN")) {
+			} else if (bullet.getDirection() == Direction.DOWN) {
 				bullet.updateY(bulletStep);
-			} else if (bullet.getDirection().equals("LEFT")) {
+			} else if (bullet.getDirection() == Direction.LEFT) {
 				bullet.updateX(-bulletStep);
 			} else {
 				bullet.updateX(bulletStep);

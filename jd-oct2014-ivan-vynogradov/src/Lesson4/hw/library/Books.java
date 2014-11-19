@@ -11,15 +11,6 @@ public class Books {
 	private String name;
 	private int limit = 0;
 
-	// private String[][] books = {
-	// { "Robert Kiosaki", "Bogatiy Papa - bedniy papa", "MONEY" },
-	// { "Nikokay Starikov", "Spacenie dollara - voina", "HISTORY" },
-	// { "Ain Rend", "Atlant Raspravil Plechi", "FANTACY" },
-	// { "Boris Akunin", "Almaznaya Kolesnica", "DETECTIV" },
-	// { "Yakov Fain", "Java Programming 24-Hour Trainer", "COMPUTERS" },
-	// { "Boris Akunin", "Turetskiy gambit", "DETECTIV" },
-	// { "Mikhael Kofler", "Linux - full rukovodstvo", "COMPUTERS" },
-	// { "Pushkin A.C.", "graf Nulin", "POEMA" } };
 
 	public String[][] getBooks() {
 		return books;
@@ -99,14 +90,12 @@ public class Books {
 	public void sortBooks(String sortBy) {
 		if (sortBy.equals("author")) {
 			Arrays.sort(books, new ColumnComparator(0)); // use EnUM
-			showAllBooks();
 		} else if (sortBy.equals("name")) {
 			Arrays.sort(books, new ColumnComparator(1));
-			showAllBooks();
 		} else if (sortBy.equals("genre")){
 			Arrays.sort(books, new ColumnComparator(2));
-			showAllBooks();
 		}
+		showAllBooks();
 		
 	}
 	

@@ -1,4 +1,4 @@
-package Lesson5.tanks;
+package Lesson6.tanks;
 
 import java.util.Random;
 
@@ -38,7 +38,6 @@ public class Tank {
 	
 	public void fire() throws Exception{
 		Bullet bullet = new Bullet((x+25), (y+25), direction);
-		System.out.println("fire from Tank" + bullet.getX());
 		af.processFire(bullet);
 	}
 	
