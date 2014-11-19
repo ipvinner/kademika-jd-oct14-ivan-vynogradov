@@ -55,9 +55,10 @@ public class Customer {
 
 	public void buy(String goodName, int count) {
 		Goods.updateGoodsArray(goodName, count);
-		int day = getDay();
-		int month = getMoth();
-		order.addOrder(this.name, goodName, count, day, month);
+		int day = Utils.getDay();
+		int month = Utils.getMoth();
+		int year = Utils.getYear();
+		order.addOrder(this.name, goodName, count, year, day, month);
 		
 	}
 
@@ -84,24 +85,6 @@ public class Customer {
 
 	}
 	
-	private int getDay(){
-		Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);        
-        return day;
-	}
 	
-	private int getMoth(){
-		Calendar calendar = Calendar.getInstance();
-        int month = calendar.get(Calendar.MONTH);
-        //System.out.println("month is " + month);
-        return month + 1;
-	}
-	
-	public void compareDate(){
-		
-	    
-	    System.out.print(System.currentTimeMillis());
-        
-	}
 
 }

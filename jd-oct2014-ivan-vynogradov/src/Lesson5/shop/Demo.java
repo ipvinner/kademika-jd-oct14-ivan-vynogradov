@@ -1,8 +1,12 @@
 package Lesson5.shop;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Demo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		
 		
 		Customer customer1 = new Customer("Ivan Vynogradov", "vaniavinogradov@rambler.ru", "+380638925486", "Odessa");
@@ -16,20 +20,24 @@ public class Demo {
 		IPphone ipphone3 = new IPphone("Snom 300", 1500, 4, "Snom 300 2 line appearance keys");
 		
 		Gateway gate1 = new Gateway("Goip-4", 4500, 3, "gsm gateway with 4 port");
-		Gateway gate2 = new Gateway("Goip-4", 8100, 2, "gsm gateway with 8 sim-cards");
+		Gateway gate2 = new Gateway("Goip-8", 8100, 2, "gsm gateway with 8 sim-cards");
 		
 		System.out.println("------------------All goods----------------");
 		Goods.getGoodsInfo();
 		
-		customer3.buy("Digium D50", 1);
+		customer3.buy("Digium D50", 2);
 		customer2.buy("Digium D70", 1);
+		customer1.buy("Goip-8", 1);
 		System.out.println("------------------All goods----------------");
 		Goods.getGoodsInfo();
 		System.out.println("-------------------Orders------------------");
 		Order.showAllOrders();
 		
 		System.out.println("-------------------Time test------------------");
-		customer1.compareDate();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Please enter numbers of days for show orders");
+		int days = Integer.parseInt(reader.readLine());
+		Order.showAllOrdersDaysLimit(days);
 	}
 
 }

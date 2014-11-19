@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -41,6 +42,22 @@ public class BattleField {
 //		battleField[v - 1][h - 1] = field;
 		battleField[v][h] = field;
 
+	}
+	
+	public String getAggressorLocation(){
+		Random r = new Random();
+		int i = r.nextInt(3);
+		String aggressorLocation;
+		
+		if(i == 1){
+				aggressorLocation = "64_128";
+			}else if(i == 2){
+				aggressorLocation = "256_320";
+			}else {
+				aggressorLocation = "0_384";
+			}
+		return aggressorLocation;
+		
 	}
 	
 	public int getDimentionX(){
