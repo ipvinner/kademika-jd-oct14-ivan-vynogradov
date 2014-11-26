@@ -29,7 +29,7 @@ public class Tank {
 	
 	public void turn(Direction direction) throws Exception{
 		this.direction = direction;
-		af.processTurn(direction);
+		af.processTurn(this);
 	}
 	
 	public void move() throws Exception{
@@ -37,8 +37,11 @@ public class Tank {
 	}
 	
 	public void fire() throws Exception{
-		Bullet bullet = new Bullet((x+25), (y+25), direction);
-		System.out.println("fire from Tank" + bullet.getX());
+		System.out.println("STEP3: fire from Tank class tank.getX()" + this.x + " tank.getY()" + this.y + "tank.getDirection()" + this.direction);
+		Bullet bullet = new Bullet((x + 25), (y + 25), direction);
+		System.out.println("STEP3: fire from Tank class Bullet.get(x)" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection()" + bullet.getDirection());
+		
+		System.out.println("STEP3: called af.processFire");
 		af.processFire(bullet);
 	}
 	
@@ -107,8 +110,8 @@ public class Tank {
 	}
 	
 	public void destroy(){
-		this.x = -100;
-		this.y = -100;
+		x = -100;
+		y = -100;
 	}
 	
 	public int getSpeed() {
@@ -120,18 +123,15 @@ public class Tank {
 	public int getX() {
 		return x;
 	}
-	public void setX(int x) {
-		this.x = x;
-	}
+	
 	public int getY() {
 		return y;
 	}
-	public void setY(int y) {
-		this.y = y;
-	}
+	
 	public Direction getDirection() {
 		return direction;
 	}
+	
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}

@@ -31,18 +31,23 @@ public class BattleField {
 	public BattleField(String[][] battlefield){
 		this.battleField = battlefield;
 	}
+	
+	public void updateQadrant(int v, int h, String object) {
+		battleField[v][h] = object;
+	}
+	
 	public String scanQadrant(int v, int h) {
-//		String result = battleField[v - 1][h - 1]; my variant
-		String result = battleField[v][h]; // Oleg video
-		return result;
-
+		return battleField[v][h];
 	}
-
-	public void updateQadrant(int v, int h, String field) {
-//		battleField[v - 1][h - 1] = field;
-		battleField[v][h] = field;
-
+	
+	public int getDimentionX(){
+		return battleField.length;
 	}
+	
+	public int getDimentionY(){
+		return battleField.length;
+	}
+	
 	
 	public String getAggressorLocation(){
 		Random r = new Random();
@@ -59,14 +64,6 @@ public class BattleField {
 		return aggressorLocation;
 		
 	}
-	
-	public int getDimentionX(){
-		return battleField[0].length;
-	}
-	
-	public int getDimentionY(){
-		return battleField[0].length;
-	}
 
 	public int getBF_WIDTH() {
 		return BF_WIDTH;
@@ -76,9 +73,7 @@ public class BattleField {
 		return BF_HEIGHT;
 	}
 	
-	public String[][] getBattleField() {
-		return battleField;
-	}
+	
 	
 
 }
