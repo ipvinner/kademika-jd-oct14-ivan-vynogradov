@@ -38,11 +38,11 @@ public class ActionField extends JPanel {
 			}
 			
 			// check aggressor
-//			if (checkInterception(getQuadrant(aggressor.getX(), aggressor.getY()), coordinates)){
-//				//System.out.println("Aggressor was destroyed");
-//				aggressor.destroy();
-//				return true;
-//			}
+			if (checkInterception(getQuadrant(aggressor.getX(), aggressor.getY()), coordinates)){
+				//System.out.println("Aggressor was destroyed");
+				aggressor.destroy();
+				return true;
+			}
 //			
 //			// check defender
 			System.out.println("STEP5: getQuadrant(deffender.getX(), deffender.getY())" + getQuadrant(deffender.getX(), deffender.getY()));
