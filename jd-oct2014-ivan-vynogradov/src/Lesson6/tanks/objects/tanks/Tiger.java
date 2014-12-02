@@ -1,11 +1,11 @@
-package Lesson6.tanks.objects;
+package Lesson6.tanks.objects.tanks;
 
 import java.awt.Color;
 
-import Lesson6.tanks.ActionField;
-import Lesson6.tanks.BattleField;
-import Lesson6.tanks.abstractobjects.AbstractTank;
 import Lesson6.tanks.enums.Direction;
+import Lesson6.tanks.objects.abstractobjects.AbstractTank;
+import Lesson6.tanks.objects.fields.ActionField;
+import Lesson6.tanks.objects.fields.BattleField;
 
 public class Tiger extends AbstractTank {
 	

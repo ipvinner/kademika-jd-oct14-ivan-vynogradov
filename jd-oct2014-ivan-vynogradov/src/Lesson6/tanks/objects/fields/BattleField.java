@@ -1,4 +1,4 @@
-package Lesson6.tanks;
+package Lesson6.tanks.objects.fields;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +9,9 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class BattleField {
+import Lesson6.shapes.Drawable;
+
+public class BattleField implements Drawable {
 
 	private int BF_WIDTH = 576;
 	private int BF_HEIGHT = 576;
@@ -72,6 +74,29 @@ public class BattleField {
 
 	public int getBF_HEIGHT() {
 		return BF_HEIGHT;
+	}
+	
+	private String getQuadrantXY(int v, int h) {
+		return (v - 1) * 64 + "_" + (h - 1) * 64;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		for (int j = 0; j < this.getDimentionY(); j++) {
+			for (int k = 0; k < this.getDimentionX(); k++) {
+				if (this.scanQadrant(j, k).equals("B")) {
+					String coordinates = getQuadrantXY(j + 1, k + 1);
+					int separator = coordinates.indexOf("_");
+					int y = Integer.parseInt(coordinates
+							.substring(0, separator));
+					int x = Integer.parseInt(coordinates
+							.substring(separator + 1));
+					g.setColor(new Color(0, 0, 255));
+					g.fillRect(x, y, 64, 64);
+				}
+			}
+		}
 	}
 	
 	

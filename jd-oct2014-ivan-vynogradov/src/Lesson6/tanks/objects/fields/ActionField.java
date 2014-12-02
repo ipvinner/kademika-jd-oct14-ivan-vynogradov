@@ -1,4 +1,4 @@
-package Lesson6.tanks;
+package Lesson6.tanks.objects.fields;
 
 import java.awt.Color; // test
 import java.awt.Dimension;
@@ -8,11 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import Lesson6.tanks.abstractobjects.AbstractTank;
 import Lesson6.tanks.enums.Direction;
 import Lesson6.tanks.objects.Bullet;
-import Lesson6.tanks.objects.T34;
-import Lesson6.tanks.objects.Tiger;
+import Lesson6.tanks.objects.abstractobjects.AbstractTank;
+import Lesson6.tanks.objects.tanks.T34;
+import Lesson6.tanks.objects.tanks.Tiger;
 
 public class ActionField extends JPanel {
 
@@ -216,21 +216,21 @@ public class ActionField extends JPanel {
 				g.fillRect(h * 64, v * 64, 64, 64);
 			}
 		}
-
-		for (int j = 0; j < battleField.getDimentionY(); j++) {
-			for (int k = 0; k < battleField.getDimentionX(); k++) {
-				if (battleField.scanQadrant(j, k).equals("B")) {
-					String coordinates = getQuadrantXY(j + 1, k + 1);
-					int separator = coordinates.indexOf("_");
-					int y = Integer.parseInt(coordinates
-							.substring(0, separator));
-					int x = Integer.parseInt(coordinates
-							.substring(separator + 1));
-					g.setColor(new Color(0, 0, 255));
-					g.fillRect(x, y, 64, 64);
-				}
-			}
-		}
+		battleField.draw(g);
+//		for (int j = 0; j < battleField.getDimentionY(); j++) {
+//			for (int k = 0; k < battleField.getDimentionX(); k++) {
+//				if (battleField.scanQadrant(j, k).equals("B")) {
+//					String coordinates = getQuadrantXY(j + 1, k + 1);
+//					int separator = coordinates.indexOf("_");
+//					int y = Integer.parseInt(coordinates
+//							.substring(0, separator));
+//					int x = Integer.parseInt(coordinates
+//							.substring(separator + 1));
+//					g.setColor(new Color(0, 0, 255));
+//					g.fillRect(x, y, 64, 64);
+//				}
+//			}
+//		}
 		// deffender
 //		g.setColor(new Color(255, 0, 0));
 //		g.fillRect(deffender.getX(), deffender.getY(), 64, 64);

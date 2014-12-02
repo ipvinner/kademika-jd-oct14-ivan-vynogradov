@@ -1,5 +1,7 @@
 package Lesson6.tanks;
 
+import Lesson6.tanks.objects.fields.ActionField;
+
 public class Launcher {
 
 	public static void main(String[] args) throws Exception {

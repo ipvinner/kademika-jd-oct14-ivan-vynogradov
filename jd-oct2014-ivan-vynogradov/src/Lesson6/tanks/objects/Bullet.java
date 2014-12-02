@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import Lesson6.shapes.Drawable;
-import Lesson6.tanks.abstractobjects.Destroyable;
 import Lesson6.tanks.enums.Direction;
+import Lesson6.tanks.objects.abstractobjects.Destroyable;
 
 public class Bullet implements Drawable, Destroyable {
 

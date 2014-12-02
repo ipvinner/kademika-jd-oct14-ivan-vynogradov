@@ -1,14 +1,14 @@
-package Lesson6.tanks.abstractobjects;
+package Lesson6.tanks.objects.abstractobjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
 import Lesson6.shapes.Drawable;
-import Lesson6.tanks.ActionField;
-import Lesson6.tanks.BattleField;
 import Lesson6.tanks.enums.Direction;
 import Lesson6.tanks.objects.Bullet;
+import Lesson6.tanks.objects.fields.ActionField;
+import Lesson6.tanks.objects.fields.BattleField;
 
 public abstract class AbstractTank implements Drawable, Destroyable {
 	
