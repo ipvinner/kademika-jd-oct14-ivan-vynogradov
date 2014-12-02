@@ -1,8 +1,16 @@
-package Lesson6.tanks;
+package Lesson6.tanks.abstractobjects;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 
-public class Tank {
+import Lesson6.shapes.Drawable;
+import Lesson6.tanks.ActionField;
+import Lesson6.tanks.BattleField;
+import Lesson6.tanks.enums.Direction;
+import Lesson6.tanks.objects.Bullet;
+
+public abstract class AbstractTank implements Drawable, Destroyable {
 	
 	protected int speed = 10;
 	private int x;
@@ -13,14 +21,17 @@ public class Tank {
 	private Bullet bullet;
 	private boolean tankType; // true is deffender, false is attacker
 	
-	public Tank(){
+	protected Color tankColor;
+	protected Color towerColor;
+	
+	public AbstractTank(){
 		
 	}
-	public Tank(ActionField af, BattleField bf){
+	public AbstractTank(ActionField af, BattleField bf){
 		this(af, bf, 128, 512, true, Direction.UP);
 	}
 	
-	public Tank(ActionField af, BattleField bf, int x, int y, boolean tankType, Direction direction){
+	public AbstractTank(ActionField af, BattleField bf, int x, int y, boolean tankType, Direction direction){
 		this.af = af;
 		this.bf = bf;
 		this.x = x;
@@ -112,6 +123,22 @@ public class Tank {
 				af.processFire(bullet);
 			}
 			
+		}
+	}
+	
+	public void draw(Graphics g){
+		g.setColor(tankColor);
+		g.fillRect(this.getX(), this.getY(), 64, 64);
+
+		g.setColor(towerColor);
+		if (this.getDirection() == Direction.UP) {
+			g.fillRect(this.getX() + 20, this.getY(), 24, 34);
+		} else if (this.getDirection() == Direction.DOWN) {
+			g.fillRect(this.getX() + 20, this.getY() + 30, 24, 34);
+		} else if (this.getDirection() == Direction.LEFT) {
+			g.fillRect(this.getX(), this.getY() + 20, 34, 24);
+		} else {
+			g.fillRect(this.getX() + 30, this.getY() + 20, 34, 24);
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package Lesson6.tanks;
+package Lesson6.tanks.enums;
 
 public enum Direction {
 	NONE,UP,DOWN,LEFT,RIGHT;

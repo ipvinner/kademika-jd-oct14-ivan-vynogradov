@@ -1,6 +1,13 @@
-package Lesson6.tanks;
+package Lesson6.tanks.objects;
 
-public class Bullet {
+import java.awt.Color;
+import java.awt.Graphics;
+
+import Lesson6.shapes.Drawable;
+import Lesson6.tanks.abstractobjects.Destroyable;
+import Lesson6.tanks.enums.Direction;
+
+public class Bullet implements Drawable, Destroyable {
 
 	private int speed = 5;
 	private int x;
@@ -49,6 +56,13 @@ public class Bullet {
 
 	public void setBulletOwner(boolean bulletOwner) {
 		this.bulletOwner = bulletOwner;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(new Color(255, 255, 0));
+		g.fillRect(this.getX(), this.getY(), 14, 14);
+		
 	}
 	
 	
