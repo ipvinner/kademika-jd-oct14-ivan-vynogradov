@@ -1,4 +1,4 @@
-package Lesson6.tanks;
+package Lesson5.tanks;
 
 import java.util.Random;
 
@@ -7,29 +7,31 @@ public class Tank {
 	protected int speed = 10;
 	private int x;
 	private int y;
-	private Direction direction;
+	protected Direction direction;
 	private ActionField af;
 	private BattleField bf;
 	private Bullet bullet;
+	private boolean tankType; // true is deffender, false is attacker
 	
 	public Tank(){
 		
 	}
 	public Tank(ActionField af, BattleField bf){
-		this(af, bf, 128, 512, Direction.UP);
+		this(af, bf, 128, 512, true, Direction.UP);
 	}
 	
-	public Tank(ActionField af, BattleField bf, int x, int y, Direction direction){
+	public Tank(ActionField af, BattleField bf, int x, int y, boolean tankType, Direction direction){
 		this.af = af;
 		this.bf = bf;
 		this.x = x;
 		this.y = y;
+		this.tankType = tankType;
 		this.direction = direction;
 	}
 	
 	public void turn(Direction direction) throws Exception{
 		this.direction = direction;
-		af.processTurn(direction);
+		af.processTurn(this);
 	}
 	
 	public void move() throws Exception{
@@ -37,7 +39,15 @@ public class Tank {
 	}
 	
 	public void fire() throws Exception{
-		Bullet bullet = new Bullet((x+25), (y+25), direction);
+		System.out.println("STEP3: fire from Tank class tank.getX()" + this.x + " tank.getY()" + this.y + "tank.getDirection()" + this.direction);
+		Bullet bullet = new Bullet((x + 25), (y + 25), direction);
+		System.out.println("STEP3: fire from Tank class Bullet.get(x)" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection()" + bullet.getDirection());
+		if(this.tankType){
+			bullet.setBulletOwner(true);
+		}else{
+			bullet.setBulletOwner(false);
+		}
+		System.out.println("STEP3: called af.processFire");
 		af.processFire(bullet);
 	}
 	
@@ -106,8 +116,8 @@ public class Tank {
 	}
 	
 	public void destroy(){
-		this.x = -100;
-		this.y = -100;
+		x = -100;
+		y = -100;
 	}
 	
 	public int getSpeed() {
@@ -119,18 +129,15 @@ public class Tank {
 	public int getX() {
 		return x;
 	}
-	public void setX(int x) {
-		this.x = x;
-	}
+	
 	public int getY() {
 		return y;
 	}
-	public void setY(int y) {
-		this.y = y;
-	}
+	
 	public Direction getDirection() {
 		return direction;
 	}
+	
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}

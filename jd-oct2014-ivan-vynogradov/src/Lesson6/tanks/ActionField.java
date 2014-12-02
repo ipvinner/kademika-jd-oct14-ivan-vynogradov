@@ -1,4 +1,4 @@
-package Lesson6.tanks;
+package Lesson5.tanks;
 
 import java.awt.Color; // test
 import java.awt.Dimension;
@@ -17,48 +17,63 @@ public class ActionField extends JPanel {
 	private Bullet bullet;
 
 	public void runTheGame() throws Exception {
-
-		while(true) {
+			System.out.println("STEP2...........runTheGame method called deffender.fire");
 			deffender.fire();
-		}
-
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+//			aggressor.fire();
+//			aggressor.fire();
+//			aggressor.fire();
+			
 	}
 
 	private boolean processInterception() {
 		String coordinates = getQuadrant(bullet.getX(), bullet.getY());
 		int y = Integer.parseInt(coordinates.split("_")[0]);
 		int x = Integer.parseInt(coordinates.split("_")[1]);
-
+//		System.out.println("processInterception");
+//		System.out.println(coordinates);
+//		System.out.println("STEP5: processInterception Bullet.get(x)" + bullet.getX() + " Bullet.getY " + bullet.getY() + " bullet.getDirection() " + bullet.getDirection());
+//		System.out.println("STEP5: processInterception deffender.get(x)" + deffender.getX() + " deffender.getY()" + deffender.getY() + " deffender.getDirection()" + deffender.getDirection());
 		if (y >= 0 && y < 9 && x >= 0 && x < 9) {
 			if (!battleField.scanQadrant(y, x).trim().isEmpty()) {
-				battleField.updateQadrant(y, x, " ");
-				;
+				battleField.updateQadrant(y, x, "");
 				return true;
 			}
 			
+//			System.out.println("STEP5: getQuadrant(aggressor.getX(), deffender.getY())" + getQuadrant(aggressor.getX(), aggressor.getY()));
+//			System.out.println("STEP5: getQuadrant(bullet.getX(), bullet.getY())" + getQuadrant(bullet.getX(), bullet.getY()));
+//			System.out.println("STEP5: WHO is OWNER of Bullet " + bullet.getBulletOwner());
 			// check aggressor
-//			if (checkInterception(getQuadrant(aggressor.getX(), aggressor.getY()), coordinates)){
-//				aggressor.destroy();
-//				return true;
-//			}
+			if (bullet.getBulletOwner() && checkInterception(getQuadrant(aggressor.getX(), aggressor.getY()), coordinates)){
+				System.out.println("Aggressor was destroyed");
+				aggressor.destroy();
+				return true;
+    		}
 //			
 //			// check defender
-//			if (checkInterception(getQuadrant(deffender.getX(), deffender.getY()), coordinates)){
-//				deffender.destroy();
-//				return true;
-//			}
+			
+			if (!bullet.getBulletOwner() && checkInterception(getQuadrant(deffender.getX(), deffender.getY()), coordinates)){
+				System.out.println("Deffender was destroyed");
+				deffender.destroy();
+				return true;
+			}
 		}
 		return false;
 
 	}
 	
 	private boolean checkInterception(String object, String quadrant){
+//		System.out.println("STEP6: getQuadrant(bullet.getX(), bullet.getY())" + getQuadrant(bullet.getX(), bullet.getY()));
 		int oy = Integer.parseInt(object.split("_")[0]);
 		int ox = Integer.parseInt(object.split("_")[1]);
-		
+		//System.out.println("oy :" + oy + " ox:" + ox);
 		int qy = Integer.parseInt(quadrant.split("_")[0]);
-		int qx = Integer.parseInt(object.split("_")[1]);
-		
+		int qx = Integer.parseInt(quadrant.split("_")[1]);
+		//System.out.println("qy :" + qy + " qx:" + qx);
 		if (oy >= 0 && oy < 9 && ox >= 0 && ox < 9){
 			if (oy == qy && ox == qx){
 				return true;
@@ -76,21 +91,17 @@ public class ActionField extends JPanel {
 	}
 
 	public void processMove(Tank tank) throws Exception {
-		//this.tank = tank;
 		Direction direction = tank.getDirection();
 		
 		int step = 1;
 		int covered = 0;
 		
-		
-		int tankX = tank.getX();
-		int tankY = tank.getY();
 		// check limits x: 0, 513; y: 0, 513
-		if ((direction.equals("UP") && tankY == 0) || (direction.equals("DOWN") && tankY >= 512)
-				|| (direction.equals("LEFT") && tankX == 0)
-				|| (direction.equals("RIGHT") && tankX >= 512)) {
+		if ((direction.equals("UP") && tank.getY() == 0) || (direction.equals("DOWN") && tank.getY() >= 512)
+				|| (direction.equals("LEFT") && tank.getX() == 0)
+				|| (direction.equals("RIGHT") && tank.getX() >= 512)) {
 			System.out.println("[illegal move] direction: " + direction
-					+ " tankX: " + tankX + ", tankY: " + tankY);
+					+ " tankX: " + tank.getX() + ", tankY: " + tank.getY());
 			return;
 		}
 
@@ -123,38 +134,34 @@ public class ActionField extends JPanel {
 		}
 	}
 
-	public void processTurn(Direction direction) throws Exception {
-		// int tankDirection = tank.getDirection(); // temp
-		// if (tankDirection != direction) {
-		// tankDirection = direction;
-		// repaint();
-		// System.out.println("Tank changed direction");
-		// System.out.println("=======================");
-		// }
+	public void processTurn(Tank tank) throws Exception {
 		repaint();
 	}
 
 	public void processFire(Bullet bullet) throws Exception {
+		
 		this.bullet = bullet;
+//		System.out.println("STEP4: processFire Bullet.get(x)" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection() " + bullet.getDirection());
 		int bulletStep = 1;
-			System.out.println("processFire");
-			System.out.println(bullet.getDirection());
-			System.out.println("bulletX " + bullet.getX() + " BulletY" + bullet.getY());
+
 		while ((bullet.getX() > -14 && bullet.getX() < 590)	&& (bullet.getY() > -14 && bullet.getY() < 590)) {
-			if (bullet.getDirection().equals("UP")) {
+			if (bullet.getDirection() == Direction.UP) {
 				bullet.updateY(-bulletStep);
-			} else if (bullet.getDirection().equals("DOWN")) {
+			} else if (bullet.getDirection() == Direction.DOWN) {
 				bullet.updateY(bulletStep);
-			} else if (bullet.getDirection().equals("LEFT")) {
+			} else if (bullet.getDirection() == Direction.LEFT) {
 				bullet.updateX(-bulletStep);
 			} else {
 				bullet.updateX(bulletStep);
 			}
-
+//			System.out.println("STEP4: bulletUpdate: bullet.getX()" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection()" + bullet.getDirection());
+			//System.out.println("STEP5: processInterception " + processInterception());
 			if (processInterception()) {
+//				System.out.println("ProcessInterception is true, so bullet must be destoyed");
 				//System.out.println("processInterception");
 				bullet.destroy();
 			}
+			
 			repaint();
 			Thread.sleep(bullet.getSpeed());
 		}
@@ -163,11 +170,12 @@ public class ActionField extends JPanel {
 
 
 	public ActionField() throws Exception {
+		
 		battleField = new BattleField();
 		deffender = new Tank(this, battleField);
 		bullet = new Bullet(-100, -100, Direction.NONE);
 		String location = battleField.getAggressorLocation();
-		aggressor = new Tank(this, battleField, Integer.parseInt(location.split("_")[1]), Integer.parseInt(location.split("_")[1]) , Direction.UP);
+		aggressor = new Tiger(this, battleField, Integer.parseInt(location.split("_")[1]), Integer.parseInt(location.split("_")[1]), false , Direction.UP);
 
 		JFrame frame = new JFrame("BATTLE FIELD, DAY 5");
 		frame.setLocation(750, 150);

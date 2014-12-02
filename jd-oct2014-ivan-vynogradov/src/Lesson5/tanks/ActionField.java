@@ -19,7 +19,14 @@ public class ActionField extends JPanel {
 	public void runTheGame() throws Exception {
 			System.out.println("STEP2...........runTheGame method called deffender.fire");
 			deffender.fire();
-			
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+			deffender.fire();
+//			aggressor.fire();
+//			aggressor.fire();
+//			aggressor.fire();
 			
 	}
 
@@ -29,26 +36,28 @@ public class ActionField extends JPanel {
 		int x = Integer.parseInt(coordinates.split("_")[1]);
 //		System.out.println("processInterception");
 //		System.out.println(coordinates);
-		System.out.println("STEP5: processInterception Bullet.get(x)" + bullet.getX() + " Bullet.getY " + bullet.getY() + " bullet.getDirection() " + bullet.getDirection());
-		System.out.println("STEP5: processInterception deffender.get(x)" + deffender.getX() + " deffender.getY()" + deffender.getY() + " deffender.getDirection()" + deffender.getDirection());
+//		System.out.println("STEP5: processInterception Bullet.get(x)" + bullet.getX() + " Bullet.getY " + bullet.getY() + " bullet.getDirection() " + bullet.getDirection());
+//		System.out.println("STEP5: processInterception deffender.get(x)" + deffender.getX() + " deffender.getY()" + deffender.getY() + " deffender.getDirection()" + deffender.getDirection());
 		if (y >= 0 && y < 9 && x >= 0 && x < 9) {
 			if (!battleField.scanQadrant(y, x).trim().isEmpty()) {
 				battleField.updateQadrant(y, x, "");
 				return true;
 			}
 			
+//			System.out.println("STEP5: getQuadrant(aggressor.getX(), deffender.getY())" + getQuadrant(aggressor.getX(), aggressor.getY()));
+//			System.out.println("STEP5: getQuadrant(bullet.getX(), bullet.getY())" + getQuadrant(bullet.getX(), bullet.getY()));
+//			System.out.println("STEP5: WHO is OWNER of Bullet " + bullet.getBulletOwner());
 			// check aggressor
-			if (checkInterception(getQuadrant(aggressor.getX(), aggressor.getY()), coordinates)){
-				//System.out.println("Aggressor was destroyed");
+			if (bullet.getBulletOwner() && checkInterception(getQuadrant(aggressor.getX(), aggressor.getY()), coordinates)){
+				System.out.println("Aggressor was destroyed");
 				aggressor.destroy();
 				return true;
-			}
+    		}
 //			
 //			// check defender
-			System.out.println("STEP5: getQuadrant(deffender.getX(), deffender.getY())" + getQuadrant(deffender.getX(), deffender.getY()));
-			System.out.println("STEP5: getQuadrant(bullet.getX(), bullet.getY())" + getQuadrant(bullet.getX(), bullet.getY()));
-			if (checkInterception(getQuadrant(deffender.getX(), deffender.getY()), coordinates)){
-				//System.out.println("Deffender was destroyed");
+			
+			if (!bullet.getBulletOwner() && checkInterception(getQuadrant(deffender.getX(), deffender.getY()), coordinates)){
+				System.out.println("Deffender was destroyed");
 				deffender.destroy();
 				return true;
 			}
@@ -58,7 +67,7 @@ public class ActionField extends JPanel {
 	}
 	
 	private boolean checkInterception(String object, String quadrant){
-		System.out.println("STEP6: getQuadrant(bullet.getX(), bullet.getY())" + getQuadrant(bullet.getX(), bullet.getY()));
+//		System.out.println("STEP6: getQuadrant(bullet.getX(), bullet.getY())" + getQuadrant(bullet.getX(), bullet.getY()));
 		int oy = Integer.parseInt(object.split("_")[0]);
 		int ox = Integer.parseInt(object.split("_")[1]);
 		//System.out.println("oy :" + oy + " ox:" + ox);
@@ -132,7 +141,7 @@ public class ActionField extends JPanel {
 	public void processFire(Bullet bullet) throws Exception {
 		
 		this.bullet = bullet;
-		System.out.println("STEP4: processFire Bullet.get(x)" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection() " + bullet.getDirection());
+//		System.out.println("STEP4: processFire Bullet.get(x)" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection() " + bullet.getDirection());
 		int bulletStep = 1;
 
 		while ((bullet.getX() > -14 && bullet.getX() < 590)	&& (bullet.getY() > -14 && bullet.getY() < 590)) {
@@ -145,10 +154,10 @@ public class ActionField extends JPanel {
 			} else {
 				bullet.updateX(bulletStep);
 			}
-			System.out.println("STEP4: bulletUpdate: bullet.getX()" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection()" + bullet.getDirection());
+//			System.out.println("STEP4: bulletUpdate: bullet.getX()" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection()" + bullet.getDirection());
 			//System.out.println("STEP5: processInterception " + processInterception());
 			if (processInterception()) {
-				System.out.println("ProcessInterception is true, so bullet must be destoyed");
+//				System.out.println("ProcessInterception is true, so bullet must be destoyed");
 				//System.out.println("processInterception");
 				bullet.destroy();
 			}
@@ -166,7 +175,7 @@ public class ActionField extends JPanel {
 		deffender = new Tank(this, battleField);
 		bullet = new Bullet(-100, -100, Direction.NONE);
 		String location = battleField.getAggressorLocation();
-		aggressor = new Tank(this, battleField, Integer.parseInt(location.split("_")[1]), Integer.parseInt(location.split("_")[1]) , Direction.UP);
+		aggressor = new Tiger(this, battleField, Integer.parseInt(location.split("_")[1]), Integer.parseInt(location.split("_")[1]), false , Direction.UP);
 
 		JFrame frame = new JFrame("BATTLE FIELD, DAY 5");
 		frame.setLocation(750, 150);

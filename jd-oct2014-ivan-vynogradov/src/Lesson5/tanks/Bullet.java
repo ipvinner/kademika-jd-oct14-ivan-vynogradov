@@ -6,6 +6,7 @@ public class Bullet {
 	private int x;
 	private int y;
 	private Direction direction;
+	private boolean bulletOwner; //true is deffender, false is aggressor
 	
 	public Bullet(int x, int y, Direction direction){
 		this.x = x;
@@ -42,6 +43,15 @@ public class Bullet {
 		return direction;
 	}
 
+	public boolean getBulletOwner() {
+		return bulletOwner;
+	}
+
+	public void setBulletOwner(boolean bulletOwner) {
+		this.bulletOwner = bulletOwner;
+	}
+	
+	
 	
 	
 

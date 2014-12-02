@@ -16,7 +16,7 @@ public class BattleField {
 
 	private String[][] battleField = { { "B", "B", "B", "B", " ", "B", " ", "B", "B" },
 			{ "B", " ", " ", " ", " ", " ", " ", " ", "B" },
-			{ "B", "B", "B", " ", "B", " ", "B", "B", "B" },
+			{ "B", "B", " ", " ", "B", " ", "B", "B", "B" },
 			{ "B", "B", "B", " ", " ", " ", "B", "B", "B" },
 			{ "B", "B", "B", " ", "B", " ", "B", "B", "B" },
 			{ "B", "B", " ", "B", "B", "B", " ", "B", "B" },
@@ -50,18 +50,19 @@ public class BattleField {
 	
 	
 	public String getAggressorLocation(){
-		Random r = new Random();
-		int i = r.nextInt(3);
-		String aggressorLocation;
-		
-		if(i == 1){
-				aggressorLocation = "64_128";
-			}else if(i == 2){
-				aggressorLocation = "256_320";
-			}else {
-				aggressorLocation = "0_384";
-			}
-		return aggressorLocation;
+//		Random r = new Random();
+//		int i = r.nextInt(3);
+//		String aggressorLocation;
+//		
+//		if(i == 1){
+//				aggressorLocation = "64_128";
+//			}else if(i == 2){
+//				aggressorLocation = "256_320";
+//			}else {
+//				aggressorLocation = "0_384";
+//			}
+//		return aggressorLocation;
+		return "64_128";
 		
 	}
 

@@ -7,23 +7,25 @@ public class Tank {
 	protected int speed = 10;
 	private int x;
 	private int y;
-	private Direction direction;
+	protected Direction direction;
 	private ActionField af;
 	private BattleField bf;
 	private Bullet bullet;
+	private boolean tankType; // true is deffender, false is attacker
 	
 	public Tank(){
 		
 	}
 	public Tank(ActionField af, BattleField bf){
-		this(af, bf, 128, 512, Direction.UP);
+		this(af, bf, 128, 512, true, Direction.UP);
 	}
 	
-	public Tank(ActionField af, BattleField bf, int x, int y, Direction direction){
+	public Tank(ActionField af, BattleField bf, int x, int y, boolean tankType, Direction direction){
 		this.af = af;
 		this.bf = bf;
 		this.x = x;
 		this.y = y;
+		this.tankType = tankType;
 		this.direction = direction;
 	}
 	
@@ -40,7 +42,11 @@ public class Tank {
 		System.out.println("STEP3: fire from Tank class tank.getX()" + this.x + " tank.getY()" + this.y + "tank.getDirection()" + this.direction);
 		Bullet bullet = new Bullet((x + 25), (y + 25), direction);
 		System.out.println("STEP3: fire from Tank class Bullet.get(x)" + bullet.getX() + " Bullet.getY" + bullet.getY() + "bullet.getDirection()" + bullet.getDirection());
-		
+		if(this.tankType){
+			bullet.setBulletOwner(true);
+		}else{
+			bullet.setBulletOwner(false);
+		}
 		System.out.println("STEP3: called af.processFire");
 		af.processFire(bullet);
 	}

@@ -1,4 +1,4 @@
-package Lesson6.tanks;
+package Lesson5.tanks;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,7 +16,7 @@ public class BattleField {
 
 	private String[][] battleField = { { "B", "B", "B", "B", " ", "B", " ", "B", "B" },
 			{ "B", " ", " ", " ", " ", " ", " ", " ", "B" },
-			{ "B", "B", "B", " ", "B", " ", "B", "B", "B" },
+			{ "B", "B", " ", " ", "B", " ", "B", "B", "B" },
 			{ "B", "B", "B", " ", " ", " ", "B", "B", "B" },
 			{ "B", "B", "B", " ", "B", " ", "B", "B", "B" },
 			{ "B", "B", " ", "B", "B", "B", " ", "B", "B" },
@@ -31,41 +31,39 @@ public class BattleField {
 	public BattleField(String[][] battlefield){
 		this.battleField = battlefield;
 	}
-	public String scanQadrant(int v, int h) {
-//		String result = battleField[v - 1][h - 1]; my variant
-		String result = battleField[v][h]; // Oleg video
-		return result;
-
-	}
-
-	public void updateQadrant(int v, int h, String field) {
-//		battleField[v - 1][h - 1] = field;
-		battleField[v][h] = field;
-
+	
+	public void updateQadrant(int v, int h, String object) {
+		battleField[v][h] = object;
 	}
 	
-	public String getAggressorLocation(){
-		Random r = new Random();
-		int i = r.nextInt(3);
-		String aggressorLocation;
-		
-		if(i == 1){
-				aggressorLocation = "64_128";
-			}else if(i == 2){
-				aggressorLocation = "256_320";
-			}else {
-				aggressorLocation = "0_384";
-			}
-		return aggressorLocation;
-		
+	public String scanQadrant(int v, int h) {
+		return battleField[v][h];
 	}
 	
 	public int getDimentionX(){
-		return battleField[0].length;
+		return battleField.length;
 	}
 	
 	public int getDimentionY(){
-		return battleField[0].length;
+		return battleField.length;
+	}
+	
+	
+	public String getAggressorLocation(){
+//		Random r = new Random();
+//		int i = r.nextInt(3);
+//		String aggressorLocation;
+//		
+//		if(i == 1){
+//				aggressorLocation = "64_128";
+//			}else if(i == 2){
+//				aggressorLocation = "256_320";
+//			}else {
+//				aggressorLocation = "0_384";
+//			}
+//		return aggressorLocation;
+		return "64_128";
+		
 	}
 
 	public int getBF_WIDTH() {
@@ -76,9 +74,7 @@ public class BattleField {
 		return BF_HEIGHT;
 	}
 	
-	public String[][] getBattleField() {
-		return battleField;
-	}
+	
 	
 
 }
