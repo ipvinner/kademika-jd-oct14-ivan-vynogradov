@@ -1,4 +1,4 @@
-package Lesson5.tanks;
+package Lesson6.tanks;
 
 import java.util.Random;
 
