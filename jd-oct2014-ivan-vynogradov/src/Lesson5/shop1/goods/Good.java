@@ -1,13 +1,22 @@
-package Lesson5.shop1;
+package Lesson5.shop1.goods;
 
 public class Good {
 	private String name;
 	private double price;
 	private String category;
+	private int count;
 	private String[] characteristics;
 	
 	
 	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -30,8 +39,10 @@ public class Good {
 		this.category = category;
 	}
 	
-	public void changePrice(){
-		System.out.println("price changed");
+	public void changePrice(double price){
+		this.price = price;
 	}
+	
+	
 	
 }

@@ -1,6 +1,9 @@
-package Lesson5.shop1;
+package Lesson5.shop1.peoples;
 
-public class Sale {
+import Lesson5.shop1.Order;
+import Lesson5.shop1.Shop;
+
+public class Sale extends Employee {
 	private String firstName;
 	private String lastName;
 	private int age;
@@ -32,6 +35,15 @@ public class Sale {
 	public Sale(){
 		
 	}
+	
+	public Sale(String firstName, String lastName, int age, boolean sex) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.sex = sex;
+		
+	}
+	
 	public Sale(String firstName, String lastName, int age, boolean sex,double salary) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -40,11 +52,7 @@ public class Sale {
 		this.salary = salary;
 	}
 	
-	public void showAllGoods(){
-		Shop shop = new Shop();
-		shop.showArrayList(shop.getGoodsList(), "All Goods List");
-	}
-	
+		
 	public void showGoodByName(String name){
 		
 	}
@@ -55,8 +63,7 @@ public class Sale {
 	
 	public void finishPurchase(String name, int count){
 		System.out.println("Sale made order and add to OrdersList");
-		Order order = new Order();
-		order.addOrder(name, count, 5000);
+		
 	}
 	
 	public void makeOrder(){
